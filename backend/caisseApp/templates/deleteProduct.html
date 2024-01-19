@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+	<h1>Delete Product</h1>
+	<p>Are you sure you want to delete the product "{{ product.name }}"?</p>
+
+	<form method="post">
+		{% csrf_token %}
+		<div class="form-group">
+			<input type="hidden" name="product_id" value="{{ product.id }}" />
+			<button type="submit" class="btn btn-danger">Yes, delete it</button>
+			<a href="{% url 'products' %}" class="btn btn-secondary">No, take me back</a>
+		</div>
+	</form>
+</div>
+{% endblock %}

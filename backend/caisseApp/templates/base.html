@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %}Django Bootstrap Template{% endblock %}</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/quartz/bootstrap.min.css" />
+	</head>
+
+	<body>
+		<!-- navbar -->
+		<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="{% url 'products' %}">FidelEase</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarColor01">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="{% url 'products' %}">Home <span class="visually-hidden">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'products' %}">Products</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'gifts' %}">Gifts</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'caisse' %}">Caisse</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'history' %}">History</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'scanGiftCode' %}">ScanGiftCode</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'inbox' %}">Inbox</a>
+						</li>
+					</ul>
+					{% if user.is_authenticated %}
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'logout' %}">Logout</a>
+						</li>
+					</ul>
+					{% else %}
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'login' %}">Login</a>
+						</li>
+					</ul>
+					{% endif %}
+				</div>
+			</div>
+		</nav>
+
+		<hr />
+		<div class="p-1">{% block content %} {% endblock %}</div>
+
+		<hr />
+		<!-- footer -->
+
+		<footer class="bg-primary text-white">
+			<div class="container-fluid py-3">
+				<div class="row">
+					<div class="col-md-6">
+						<h5>FidelEase</h5>
+						<p class="small">© {{ now.year }} FidelEase. All Rights Reserved.</p>
+					</div>
+					<div class="col-md-6 text-md-right">
+						<ul class="list-inline small">
+							<li class="list-inline-item"><a href="" class="text-white">Privacy Policy</a></li>
+							<li class="list-inline-item"><a href="" class="text-white">Terms of Service</a></li>
+							<li class="list-inline-item"><a href="" class="text-white">Contact Us</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+	<h1>Facture Details</h1>
+	<p>Facture ID: {{ facture.id }}</p>
+	<p>User: {{ facture.userId.username }}</p>
+	<p>Date: {{ facture.date }}</p>
+
+	<button onclick="printPage()" class="btn btn-success mb-3">Imprimer - Telecharger</button>
+
+	<table class="table table-hover">
+		<thead>
+			<tr class="table-primary">
+				<th>Product</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Subtotal</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for transaction in transactions %}
+			<tr class="table-secondary">
+				<td>{{ transaction.productId.name }}</td>
+				<td>{{ transaction.quantity }}</td>
+				<td>{{ transaction.productId.price }} MAD</td>
+				<td>{% widthratio transaction.productId.price 1 transaction.quantity %} MAD</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+		<tfoot>
+			<tr class="table-warning">
+				<td colspan="3"><strong>Total Cost</strong></td>
+				<td>{{ total_cost }} MAD</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+
+<script>
+	function printPage() {
+		window.print();
+	}
+</script>
+{% endblock %}

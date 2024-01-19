@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+	<h1>Scan Gift Code</h1>
+	<form method="post" class="form-inline">
+		{% csrf_token %}
+		<div class="form-group mb-2">
+			<label for="giftCode" class="sr-only">Gift Code</label>
+			<input type="text" class="form-control" id="giftCode" name="giftCode" placeholder="Enter gift code" />
+		</div>
+		<button type="submit" class="btn btn-primary mb-2 ml-5">Check Gift Code</button>
+	</form>
+
+	{% if gift %}
+	<h5 class="bg bg-success">Gift Code Valid</h5>
+	<div class="mt-4">
+		<h2>Gift Details</h2>
+		<img src="{{ gift.productId.image.url }}" style="width: 100px" alt="{{ gift.productId.name }}" />
+		<p><strong>Product ID:</strong> {{ gift.productId.id }}</p>
+		<p><strong>Product Name:</strong> {{ gift.productId.name }}</p>
+		<p><strong>Point Cost:</strong> {{ gift.pointCost }} Point</p>
+		<p><strong>Price :</strong> {{ gift.pointCost }} DH</p>
+		<!-- Add more details as needed -->
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

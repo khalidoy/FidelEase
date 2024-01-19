@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+	<h1>Products Page</h1>
+	<a href="addProduct" class="btn btn-success mb-3">add new product</a>
+	<table class="table table-hover">
+		<thead>
+			<tr class="table-primary">
+				<th>Image</th>
+				<th>Product Name</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for p in product_list %}
+			<tr class="table-secondary">
+				<td>
+					<img src="{{ p.image.url }}" style="width: 100px" alt="{{ p.name }}" />
+				</td>
+				<td>{{ p.name }}</td>
+
+				<td>
+					<a href="productDetails/{{ p.id }}" class="btn btn-primary">Details</a>
+					<a href="editProduct/{{ p.id }}" class="btn btn-warning">Edit</a>
+					<a href="deleteProduct/{{ p.id }}" class="btn btn-danger">Delete</a>
+				</td>
+			</tr>
+			{% empty %}
+			<tr>
+				<td colspan="3">No products available.</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}

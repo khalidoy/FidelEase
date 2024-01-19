@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+	<h1>List of Gifts</h1>
+	<a href="{% url 'addGift' %}" class="btn btn-success mb-3">Add New Gift</a>
+	<table class="table table-hover">
+		<thead>
+			<tr class="table-primary">
+				<th>Product Name</th>
+				<th>Product ID</th>
+				<th>Point Cost</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for gift in gifts %}
+			<tr class="table-secondary">
+				<td>{{ gift.productId.name }}</td>
+				<!-- Display the product name -->
+				<td>{{ gift.productId.id }}</td>
+				<td>{{ gift.pointCost }}</td>
+				<td>
+					<a href="{% url 'editGift' gift.id %}" class="btn btn-primary btn-sm">Edit</a>
+					<a href="{% url 'deleteGift' gift.id %}" class="btn btn-danger btn-sm">Delete</a>
+				</td>
+			</tr>
+			{% empty %}
+			<tr>
+				<td colspan="4">No gifts available.</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% endblock %}
